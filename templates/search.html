@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Search Result</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.4.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+  <h2>Search Result for "<span class="text-primary">{{ keyword }}</span>"</h2>
+  <a href="/" class="btn btn-secondary btn-sm mb-3">Back to Timeline List</a>
+
+  {% if results %}
+  <div class="card">
+    <ul class="list-group list-group-flush">
+      {% for item in results %}
+      <li class="list-group-item">
+        <strong>Timeline ID:</strong> {{ item.id }}<br>
+        <strong>User ID:</strong> {{ item.user_id }}<br>
+        <strong>Content:</strong> {{ item.content }}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% else %}
+  <div class="alert alert-warning mt-3">No results found.</div>
+  {% endif %}
+
+  <div class="mt-4">
+    <h5>Search Again</h5>
+    <form action="/search" method="get" class="input-group">
+      <input name="keyword" class="form-control" placeholder="Search again..." value="{{ keyword }}">
+      <button class="btn btn-outline-secondary" type="submit">Search</button>
+    </form>
+  </div>
+</div>
+</body>
+</html>
